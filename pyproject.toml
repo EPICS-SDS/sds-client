@@ -1,0 +1,33 @@
+[tool.poetry]
+name = "sds_client"
+dynamic = ["version"]
+description = "SDS Client Service API"
+authors = ["OpenAPI Generator Community <team@openapitools.org>"]
+license = "NoLicense"
+readme = "README.md"
+repository = "https://gitlab.lu.esss.se/ess-operations-data-framework/sds-client"
+keywords = ["OpenAPI", "OpenAPI-Generator", "SDS Client Service API"]
+include = ["sds_client/py.typed"]
+
+[tool.poetry.dependencies]
+python = "^3.7"
+
+urllib3 = ">= 1.25.3"
+python-dateutil = ">=2.8.2"
+pydantic = "^1.10.5, <2"
+aenum = ">=3.1.11"
+
+[tool.poetry.dev-dependencies]
+pytest = ">=7.2.1"
+tox = ">=3.9.0"
+flake8 = ">=4.0.0"
+
+[build-system]
+requires = ["setuptools", "setuptools_scm[toml]>=6.2"]
+build-backend = "setuptools.build_meta"
+
+[tool.pylint.'MESSAGES CONTROL']
+extension-pkg-whitelist = "pydantic"
+
+[tool.setuptools_scm]
+write_to = "_version.py"
