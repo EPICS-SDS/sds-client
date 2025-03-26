@@ -23,9 +23,6 @@ default:
     - pip install -r test-requirements.txt
     - pytest --cov=sds_client
 
-pytest-3.7:
-  extends: .pytest
-  image: python:3.7-alpine
 pytest-3.8:
   extends: .pytest
   image: python:3.8-alpine
