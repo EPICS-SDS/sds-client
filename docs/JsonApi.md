@@ -5,7 +5,7 @@ All URIs are relative to *https://sds-retriever.cyolo.ess.eu/api*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**get_json_by_dataset_id_json_dataset_id_get**](JsonApi.md#get_json_by_dataset_id_json_dataset_id_get) | **GET** /json/dataset/{id} | Get Json By Dataset Id
-[**get_json_by_dataset_query_json_query_get**](JsonApi.md#get_json_by_dataset_query_json_query_get) | **GET** /json/query | Get Json By Dataset Query
+[**get_json_by_dataset_query_json_query_post**](JsonApi.md#get_json_by_dataset_query_json_query_post) | **POST** /json/query | Get Json By Dataset Query
 [**get_json_by_path_json_get**](JsonApi.md#get_json_by_path_json_get) | **GET** /json | Get Json By Path
 [**get_json_with_multiple_datasets_json_datasets_post**](JsonApi.md#get_json_with_multiple_datasets_json_datasets_post) | **POST** /json/datasets | Get Json With Multiple Datasets
 
@@ -15,7 +15,8 @@ Method | HTTP request | Description
 
 Get Json By Dataset Id
 
-Get the dataset with the given `id` as json - **pvs** (List[str], optional): list of PVs to return
+Get the dataset with the given `id` as json
+- **pvs** (List[str], optional): list of PVs to return
 
 ### Example
 
@@ -79,12 +80,23 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **get_json_by_dataset_query_json_query_get**
-> object get_json_by_dataset_query_json_query_get(collector_id=collector_id, start=start, end=end, sds_event_pulse_id_start=sds_event_pulse_id_start, sds_event_pulse_id_end=sds_event_pulse_id_end, include_pvs=include_pvs)
+# **get_json_by_dataset_query_json_query_post**
+> object get_json_by_dataset_query_json_query_post(start=start, end=end, sds_event_cycle_id_start=sds_event_cycle_id_start, sds_event_cycle_id_end=sds_event_cycle_id_end, size=size, include_pvs=include_pvs, collector_id_list=collector_id_list)
 
 Get Json By Dataset Query
 
-Search for datasets in the index and returns a json with all hits. - **collector_id** (List[str], optional): list of collector IDs to   consider for the search - **start** (int, optional): UTC timestamp for interval start - **end** (int, optional): UTC timestamp for interval end - **sds_event_pulse_id_start** (int, optional): SDS event pulse ID for interval start - **sds_event_pulse_id_end** (int, optional): SDS event pulse ID for interval end - **search_after** (int, optional): to scroll over a large number of hits - **include_pvs** (List[str], optional): list of PVs to return  To search for a set of PVs, first one needs to search for collectors containing those PVs and then search by collector IDs.
+Search for datasets in the index and returns a json with all hits.
+- **collector_id** (List[str], optional): list of collector IDs to
+  consider for the search
+- **start** (int, optional): UTC timestamp for interval start
+- **end** (int, optional): UTC timestamp for interval end
+- **sds_event_cycle_id_start** (int, optional): SDS event cycle ID for interval start
+- **sds_event_cycle_id_end** (int, optional): SDS event cycle ID for interval end
+- **size** (int, optional): Limit the number of results. If used alone, it will return the latest *size* datasets
+- **include_pvs** (List[str], optional): list of PVs to return
+
+To search for a set of PVs, first one needs to search for collectors
+containing those PVs and then search by collector IDs.
 
 ### Example
 
@@ -92,6 +104,7 @@ Search for datasets in the index and returns a json with all hits. - **collector
 import time
 import os
 import sds_client
+from sds_client.models.collector_id_list import CollectorIdList
 from sds_client.rest import ApiException
 from pprint import pprint
 
@@ -106,20 +119,21 @@ configuration = sds_client.Configuration(
 with sds_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = sds_client.JsonApi(api_client)
-    collector_id = ['collector_id_example'] # List[str] |  (optional)
     start = '2013-10-20T19:20:30+01:00' # datetime |  (optional)
     end = '2013-10-20T19:20:30+01:00' # datetime |  (optional)
-    sds_event_pulse_id_start = 56 # int |  (optional)
-    sds_event_pulse_id_end = 56 # int |  (optional)
+    sds_event_cycle_id_start = 56 # int |  (optional)
+    sds_event_cycle_id_end = 56 # int |  (optional)
+    size = 56 # int |  (optional)
     include_pvs = ['include_pvs_example'] # List[str] |  (optional)
+    collector_id_list = sds_client.CollectorIdList() # CollectorIdList |  (optional)
 
     try:
         # Get Json By Dataset Query
-        api_response = api_instance.get_json_by_dataset_query_json_query_get(collector_id=collector_id, start=start, end=end, sds_event_pulse_id_start=sds_event_pulse_id_start, sds_event_pulse_id_end=sds_event_pulse_id_end, include_pvs=include_pvs)
-        print("The response of JsonApi->get_json_by_dataset_query_json_query_get:\n")
+        api_response = api_instance.get_json_by_dataset_query_json_query_post(start=start, end=end, sds_event_cycle_id_start=sds_event_cycle_id_start, sds_event_cycle_id_end=sds_event_cycle_id_end, size=size, include_pvs=include_pvs, collector_id_list=collector_id_list)
+        print("The response of JsonApi->get_json_by_dataset_query_json_query_post:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling JsonApi->get_json_by_dataset_query_json_query_get: %s\n" % e)
+        print("Exception when calling JsonApi->get_json_by_dataset_query_json_query_post: %s\n" % e)
 ```
 
 
@@ -128,12 +142,13 @@ with sds_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **collector_id** | [**List[str]**](str.md)|  | [optional] 
  **start** | **datetime**|  | [optional] 
  **end** | **datetime**|  | [optional] 
- **sds_event_pulse_id_start** | **int**|  | [optional] 
- **sds_event_pulse_id_end** | **int**|  | [optional] 
+ **sds_event_cycle_id_start** | **int**|  | [optional] 
+ **sds_event_cycle_id_end** | **int**|  | [optional] 
+ **size** | **int**|  | [optional] 
  **include_pvs** | [**List[str]**](str.md)|  | [optional] 
+ **collector_id_list** | [**CollectorIdList**](CollectorIdList.md)|  | [optional] 
 
 ### Return type
 
@@ -145,7 +160,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: application/json
 
 ### HTTP response details
@@ -161,7 +176,9 @@ No authorization required
 
 Get Json By Path
 
-Get a json representation of a file from the storage - **path** (str, required): file path - **pvs** (List[str], optional): list of PVs to return
+Get a json representation of a file from the storage
+- **path** (str, required): file path
+- **pvs** (List[str], optional): list of PVs to return
 
 ### Example
 
@@ -230,7 +247,9 @@ No authorization required
 
 Get Json With Multiple Datasets
 
-Get a Json containing the requested datasets. - **datasets** (List[Dataset], required): list of datasets to download - **include_pvs** (List[str], optional): list of PVs to return
+Get a Json containing the requested datasets.
+- **datasets** (List[Dataset], required): list of datasets to download
+- **include_pvs** (List[str], optional): list of PVs to return
 
 ### Example
 

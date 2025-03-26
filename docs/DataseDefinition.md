@@ -6,7 +6,8 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **collector_id** | **str** |  | 
 **sds_event_timestamp** | **datetime** |  | 
-**sds_event_pulse_id** | **int** |  | 
+**sds_cycle_start_timestamp** | **datetime** |  | 
+**sds_event_cycle_id** | **int** |  | 
 **path** | **str** |  | 
 
 ## Example
@@ -24,7 +25,7 @@ print DataseDefinition.to_json()
 # convert the object into a dict
 datase_definition_dict = datase_definition_instance.to_dict()
 # create an instance of DataseDefinition from a dict
-datase_definition_form_dict = datase_definition.from_dict(datase_definition_dict)
+datase_definition_from_dict = DataseDefinition.from_dict(datase_definition_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

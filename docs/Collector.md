@@ -5,11 +5,11 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **name** | **str** |  | 
-**event_name** | **str** |  | 
 **event_code** | **int** |  | 
 **pvs** | **List[str]** |  | 
-**host** | **str** |  | 
-**id** | **str** |  | 
+**parent_path** | **str** |  | [optional] [default to '/']
+**collector_id** | **str** |  | [optional] 
+**version** | **int** |  | [optional] [default to 1]
 **created** | **datetime** |  | 
 
 ## Example
@@ -27,7 +27,7 @@ print Collector.to_json()
 # convert the object into a dict
 collector_dict = collector_instance.to_dict()
 # create an instance of Collector from a dict
-collector_form_dict = collector.from_dict(collector_dict)
+collector_from_dict = Collector.from_dict(collector_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

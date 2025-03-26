@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **total** | **int** |  | 
-**search_after** | **int** |  | [optional] 
+**search_after** | **int** |  | 
 **collectors** | [**List[Collector]**](Collector.md) |  | 
 
 ## Example
@@ -23,7 +23,7 @@ print MultiResponseCollector.to_json()
 # convert the object into a dict
 multi_response_collector_dict = multi_response_collector_instance.to_dict()
 # create an instance of MultiResponseCollector from a dict
-multi_response_collector_form_dict = multi_response_collector.from_dict(multi_response_collector_dict)
+multi_response_collector_from_dict = MultiResponseCollector.from_dict(multi_response_collector_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

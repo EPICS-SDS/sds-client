@@ -6,9 +6,10 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **collector_id** | **str** |  | 
 **sds_event_timestamp** | **datetime** |  | 
-**sds_event_pulse_id** | **int** |  | 
+**sds_cycle_start_timestamp** | **datetime** |  | 
+**sds_event_cycle_id** | **int** |  | 
 **path** | **str** |  | 
-**beam_info** | [**BeamInfo**](BeamInfo.md) |  | 
+**beam_info** | **object** |  | 
 **id** | **str** |  | 
 
 ## Example
@@ -26,7 +27,7 @@ print Dataset.to_json()
 # convert the object into a dict
 dataset_dict = dataset_instance.to_dict()
 # create an instance of Dataset from a dict
-dataset_form_dict = dataset.from_dict(dataset_dict)
+dataset_from_dict = Dataset.from_dict(dataset_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -14,29 +14,22 @@
 
 import unittest
 
-from sds_client.api.datasets_api import DatasetsApi  # noqa: E501
+from sds_client.api.events_api import EventsApi  # noqa: E501
 
 
-class TestDatasetsApi(unittest.TestCase):
-    """DatasetsApi unit test stubs"""
+class TestEventsApi(unittest.TestCase):
+    """EventsApi unit test stubs"""
 
     def setUp(self) -> None:
-        self.api = DatasetsApi()
+        self.api = EventsApi()
 
     def tearDown(self) -> None:
         self.api.api_client.close()
 
-    def test_get_dataset_datasets_id_get(self) -> None:
-        """Test case for get_dataset_datasets_id_get
+    def test_query_aggregated_datasets_by_event_events_post(self) -> None:
+        """Test case for query_aggregated_datasets_by_event_events_post
 
-        Get Dataset  # noqa: E501
-        """
-        pass
-
-    def test_query_datasets_datasets_post(self) -> None:
-        """Test case for query_datasets_datasets_post
-
-        Query Datasets  # noqa: E501
+        Query Aggregated Datasets By Event  # noqa: E501
         """
         pass
 

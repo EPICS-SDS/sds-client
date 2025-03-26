@@ -17,20 +17,16 @@ import pprint
 import re  # noqa: F401
 import json
 
-from datetime import datetime
 
-from pydantic import BaseModel, Field, StrictInt, StrictStr
+from typing import List
+from pydantic import BaseModel, Field, StrictStr, conlist
 
-class DataseDefinition(BaseModel):
+class CollectorIdList(BaseModel):
     """
-    DataseDefinition
+    CollectorIdList
     """
-    collector_id: StrictStr = Field(...)
-    sds_event_timestamp: datetime = Field(...)
-    sds_cycle_start_timestamp: datetime = Field(...)
-    sds_event_cycle_id: StrictInt = Field(...)
-    path: StrictStr = Field(...)
-    __properties = ["collector_id", "sds_event_timestamp", "sds_cycle_start_timestamp", "sds_event_cycle_id", "path"]
+    collector_id: conlist(StrictStr) = Field(...)
+    __properties = ["collector_id"]
 
     class Config:
         """Pydantic configuration"""
@@ -46,8 +42,8 @@ class DataseDefinition(BaseModel):
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> DataseDefinition:
-        """Create an instance of DataseDefinition from a JSON string"""
+    def from_json(cls, json_str: str) -> CollectorIdList:
+        """Create an instance of CollectorIdList from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self):
@@ -59,20 +55,16 @@ class DataseDefinition(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> DataseDefinition:
-        """Create an instance of DataseDefinition from a dict"""
+    def from_dict(cls, obj: dict) -> CollectorIdList:
+        """Create an instance of CollectorIdList from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return DataseDefinition.parse_obj(obj)
+            return CollectorIdList.parse_obj(obj)
 
-        _obj = DataseDefinition.parse_obj({
-            "collector_id": obj.get("collector_id"),
-            "sds_event_timestamp": obj.get("sds_event_timestamp"),
-            "sds_cycle_start_timestamp": obj.get("sds_cycle_start_timestamp"),
-            "sds_event_cycle_id": obj.get("sds_event_cycle_id"),
-            "path": obj.get("path")
+        _obj = CollectorIdList.parse_obj({
+            "collector_id": obj.get("collector_id")
         })
         return _obj
 

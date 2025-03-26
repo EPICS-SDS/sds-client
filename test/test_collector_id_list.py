@@ -15,10 +15,10 @@
 import unittest
 import datetime
 
-from sds_client.models.http_validation_error import HTTPValidationError  # noqa: E501
+from sds_client.models.collector_id_list import CollectorIdList  # noqa: E501
 
-class TestHTTPValidationError(unittest.TestCase):
-    """HTTPValidationError unit test stubs"""
+class TestCollectorIdList(unittest.TestCase):
+    """CollectorIdList unit test stubs"""
 
     def setUp(self):
         pass
@@ -26,32 +26,30 @@ class TestHTTPValidationError(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional) -> HTTPValidationError:
-        """Test HTTPValidationError
+    def make_instance(self, include_optional) -> CollectorIdList:
+        """Test CollectorIdList
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
-        # uncomment below to create an instance of `HTTPValidationError`
+        # uncomment below to create an instance of `CollectorIdList`
         """
-        model = HTTPValidationError()  # noqa: E501
+        model = CollectorIdList()  # noqa: E501
         if include_optional:
-            return HTTPValidationError(
-                detail = [
-                    sds_client.models.validation_error.ValidationError(
-                        loc = [
-                            null
-                            ], 
-                        msg = '', 
-                        type = '', )
+            return CollectorIdList(
+                collector_id = [
+                    ''
                     ]
             )
         else:
-            return HTTPValidationError(
+            return CollectorIdList(
+                collector_id = [
+                    ''
+                    ],
         )
         """
 
-    def testHTTPValidationError(self):
-        """Test HTTPValidationError"""
+    def testCollectorIdList(self):
+        """Test CollectorIdList"""
         # inst_req_only = self.make_instance(include_optional=False)
         # inst_req_and_optional = self.make_instance(include_optional=True)
 
